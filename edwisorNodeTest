@@ -1,0 +1,53 @@
+/*
+Create an Express application that has following routes and runs on port 3000 - 
+Route 1 - GET  /split/name - which takes fullName as query parameter and gives firstName and
+ lastName as output. 
+Sample input - /split/name?fullName=Aditya Kumar
+Output - {
+	“firstName”:”Aditya”,
+	“lastName”:”Kumar”
+}
+ Route 2 - /calculate/age - which takes date of birth in format yyyy-mm-dd and 
+return the age of the person. 
+Sample input - /calculate/age?dob=1992-02-28
+Output - {
+	“age”:27
+}
+
+NOTE: You are not required to use app.listen(<port>). This will be handled by the system.
+
+*/
+
+
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+
+
+
+app.get('/split/name', (req, res) => {
+let fullName=req.params.fullName;
+let fulName1=fullName.split(' ');
+let name={
+	“firstName”:fullName1[0],
+	“lastName”:fullName1[1]
+};
+res.send(name);
+    
+});// end split name
+
+app.get('/calculate/age', (req, res) => {
+let dob=res.params.dob;
+let dob1=dob.split('-');
+let age=2020-dob1[0];
+let ager={"age":age};
+res.send(ager);
+  
+
+
+
+});// end calculate age
+
+module.exports = app;
